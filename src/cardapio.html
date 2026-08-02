@@ -358,6 +358,23 @@
     .admin-panel{padding:16px;}
     .admin-item{flex-wrap:wrap;}
   }
+  .hours-section{padding:8px 20px 4px;display:flex;justify-content:center;}
+  .hours-card{
+    background:var(--white);border:1px solid var(--blush);border-radius:18px;
+    padding:20px 24px;max-width:460px;width:100%;text-align:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
+  }
+  .hours-card h2{font-size:1.15rem;margin:10px 0 12px;}
+  .status-badge{
+    display:inline-block;padding:6px 16px;border-radius:999px;
+    font-weight:800;font-size:.82rem;letter-spacing:.02em;
+  }
+  .status-badge.is-open{background:#E4F5E7;color:#1E7B3C;}
+  .status-badge.is-closed{background:#FBE4E1;color:#B8503F;}
+  .hours-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .hours-list li{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;}
+  .hours-list li span{color:var(--plum-soft);}
+  .status-note{margin:14px 0 0;font-size:.88rem;color:#B8503F;font-weight:700;}
 </style>
 </head>
 <body>
