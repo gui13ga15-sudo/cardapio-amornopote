@@ -1152,6 +1152,13 @@ function fillSettingsForm(){
   document.getElementById('settTagline').value = settings.tagline;
   document.getElementById('settLead').value = settings.lead;
   document.getElementById('settPhone').value = settings.phone;
+  const h = { ...DEFAULT_SETTINGS.hours, ...(settings.hours||{}) };
+  document.getElementById('settWeekOpen').value = h.weekOpen;
+  document.getElementById('settWeekClose').value = h.weekClose;
+  document.getElementById('settWeekendOpen').value = h.weekendOpen;
+  document.getElementById('settWeekendClose').value = h.weekendClose;
+  document.getElementById('settStoreStatus').value = settings.storeStatus || 'auto';
+  document.getElementById('settStatusNote').value = settings.statusNote || '';
   document.getElementById('settNewPass').value = '';
   const prev = document.getElementById('logoPreview');
   if(settings.logo){ prev.src = settings.logo; prev.style.display='block'; document.getElementById('logoUploadText').style.display='none'; }
