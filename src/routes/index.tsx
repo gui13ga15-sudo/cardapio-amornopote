@@ -97,9 +97,9 @@ function Cardapio() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-6">
-      {/* Barra superior fixa com o botão de finalizar — grande e fácil de tocar */}
-      <header className="fixed inset-x-0 top-0 z-30 border-b border-border bg-card/95 backdrop-blur">
+    <div className="min-h-screen bg-background pb-16">
+      {/* Barra superior com o botão de finalizar */}
+      <header className="sticky top-0 z-30 border-b border-border bg-card/95 backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
           <div className="min-w-0">
             <p className="font-display text-lg leading-none font-bold text-primary">
@@ -112,15 +112,15 @@ function Cardapio() {
           <button
             type="button"
             onClick={finalizar}
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-whats px-5 py-3.5 text-base font-bold text-whats-foreground shadow-md transition-transform active:scale-95 min-h-[52px] tap-highlight-transparent"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-whats px-4 py-2.5 text-sm font-bold text-whats-foreground shadow-sm transition-transform active:scale-95"
           >
-            <ShoppingBag className="h-5 w-5" />
+            <ShoppingBag className="h-4 w-4" />
             Finalizar pedido
           </button>
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-4 pt-20">
+      <main className="mx-auto max-w-3xl px-4">
         <section className="mt-4 overflow-hidden rounded-3xl border border-border bg-card">
           <img
             src={heroImg}
@@ -195,7 +195,7 @@ function Cardapio() {
         <section id="dados" className="mt-10 rounded-3xl border border-border bg-card p-5">
           <h2 className="text-xl font-bold text-foreground">Seus dados</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Preencha e toque em “Finalizar pedido” no topo para enviar no WhatsApp.
+            Preencha e toque em “Finalizar pedido” para enviar no WhatsApp.
           </p>
 
           <div className="mt-4 grid gap-4">
@@ -292,6 +292,15 @@ function Cardapio() {
           </div>
 
           {aviso && <p className="mt-3 text-sm font-semibold text-primary">{aviso}</p>}
+
+          <button
+            type="button"
+            onClick={finalizar}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-whats px-5 py-3.5 text-base font-bold text-whats-foreground transition-transform active:scale-95"
+          >
+            <ShoppingBag className="h-5 w-5" />
+            Finalizar pedido no WhatsApp
+          </button>
         </section>
       </main>
     </div>
