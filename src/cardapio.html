@@ -76,10 +76,19 @@
   .brand-text strong{font-family:'Fraunces',serif;font-size:1.05rem;letter-spacing:.02em;}
   .brand-text span{font-size:.72rem;color:var(--plum-soft);letter-spacing:.08em;text-transform:uppercase;}
   .cart-btn{
-    position:relative;background:var(--plum);color:#fff;
-    padding:10px 16px;border-radius:999px;font-weight:700;
-    display:flex;align-items:center;gap:8px;font-size:.92rem;
+    position:relative;background:var(--rose-gold);color:#fff;
+    padding:16px 26px;border-radius:999px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    font-size:1.05rem;line-height:1;min-height:56px;
+    box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent;touch-action:manipulation;
     transition:transform .15s ease, background .2s ease;
+  }
+  .cart-btn::after{content:"";position:absolute;inset:-12px;border-radius:999px;}
+  .cart-btn:active{transform:scale(.97);}
+  @media (max-width:640px){
+    .header-inner{gap:12px;}
+    .cart-btn{padding:16px 20px;font-size:1rem;flex:1;max-width:230px;}
+    .brand img{height:40px;width:40px;}
   }
   .cart-btn:hover{background:var(--rose-gold-dark);transform:translateY(-1px);}
   .cart-badge{
@@ -361,8 +370,8 @@
         <span>Doces Caseiros</span>
       </div>
     </div>
-    <button class="cart-btn" id="openCartBtn" aria-label="Abrir carrinho">
-      🧺 Carrinho <span class="cart-badge" id="cartBadge">0</span>
+    <button class="cart-btn" id="openCartBtn" aria-label="Finalizar pedido">
+      🧺 Finalizar pedido <span class="cart-badge" id="cartBadge">0</span>
     </button>
   </div>
 </header>
