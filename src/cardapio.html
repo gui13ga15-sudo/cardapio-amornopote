@@ -732,6 +732,8 @@ async function initData(){
 
   document.getElementById('year').textContent = new Date().getFullYear();
   renderCart();
+  renderStoreStatus();
+  setInterval(renderStoreStatus, 60000);
 }
 
 function renderAll(){
