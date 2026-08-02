@@ -36,9 +36,11 @@ function Cardapio() {
   const [aviso, setAviso] = useState("");
 
   const itens = useMemo(
-    () => MENU.filter((m) => cart[m.id] > 0).map((m) => ({ ...m, qtd: cart[m.id] })),
+    () =>
+      MENU.filter((m) => (cart[m.id] ?? 0) > 0).map((m) => ({ ...m, qtd: cart[m.id] ?? 0 })),
     [cart],
   );
+
   const total = itens.reduce((s, i) => s + i.preco * i.qtd, 0);
   const qtdTotal = itens.reduce((s, i) => s + i.qtd, 0);
 
