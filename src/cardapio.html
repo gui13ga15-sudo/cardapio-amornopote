@@ -1163,6 +1163,14 @@ async function submitSettingsForm(e){
   updated.tagline = document.getElementById('settTagline').value.trim();
   updated.lead = document.getElementById('settLead').value.trim();
   updated.phone = document.getElementById('settPhone').value.trim();
+  updated.storeStatus = document.getElementById('settStoreStatus').value;
+  updated.statusNote = document.getElementById('settStatusNote').value.trim();
+  updated.hours = {
+    weekOpen: document.getElementById('settWeekOpen').value || '11:00',
+    weekClose: document.getElementById('settWeekClose').value || '22:00',
+    weekendOpen: document.getElementById('settWeekendOpen').value || '14:00',
+    weekendClose: document.getElementById('settWeekendClose').value || '00:00'
+  };
   updated.logo = pendingLogoImage;
   const newPass = document.getElementById('settNewPass').value;
   if(newPass){ updated.password = newPass; }
