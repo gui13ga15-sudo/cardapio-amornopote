@@ -675,6 +675,61 @@ function renderAll(){
   document.getElementById('brandName').textContent = settings.storeName;
   document.getElementById('heroTagline').textContent = settings.tagline;
   document.getElementById('heroLead').textContent = settings.lead;
+  renderStoreStatus();
+}
+
+// ---------- HORÁRIOS / STATUS DA LOJA ----------
+function getHours(){
+  return { ...DEFAULT_SETTINGS.hours, ...(settings.hours||{}) };
+}
+function toMin(t){
+  const [h,m] = String(t||'0:0').split(':').map(Number);
+  return (h||0)*60 + (m||0);
+}
+function isWithin(nowMin, open, close){
+  const o = toMin(open), c = toMin(close);
+  if(c === o) return true;
+  if(c > o) return nowMin >= o && nowMin < c;
+  return nowMin >= o || nowMin < c; // vira a madrugada
+}
+function computeOpen(){
+  const h = getHours();
+  const now = new Date();
+  const day = now.getDay(); // 0 dom, 1 seg ... 6 sab
+  const nowMin = now.getHours()*60 + now.getMinutes();
+  const prevDay = (day + 6) % 7;
+  const isWeekDay = (d)=> d>=2 && d<=5;      // terça a sexta
+  const isWeekendDay = (d)=> d===6 || d===0; // sábado e domingo
+  if(isWeekDay(day) && isWithin(nowMin, h.weekOpen, h.weekClose)) return true;
+  if(isWeekendDay(day) && isWithin(nowMin, h.weekendOpen, h.weekendClose)) return true;
+  // horário que atravessa a meia-noite do dia anterior
+  if(isWeekDay(prevDay) && toMin(h.weekClose) < toMin(h.weekOpen) && nowMin < toMin(h.weekClose)) return true;
+  if(isWeekendDay(prevDay) && toMin(h.weekendClose) < toMin(h.weekendOpen) && nowMin < toMin(h.weekendClose)) return true;
+  return false;
+}
+function isStoreOpen(){
+  const st = settings.storeStatus || 'auto';
+  if(st === 'open') return true;
+  if(st === 'closed') return false;
+  return computeOpen();
+}
+function renderStoreStatus(){
+  const h = getHours();
+  const open = isStoreOpen();
+  const badge = document.getElementById('statusBadge');
+  if(badge){
+    badge.textContent = open ? 'Aberto agora' : 'Fechado no momento';
+    badge.className = 'status-badge ' + (open ? 'is-open' : 'is-closed');
+  }
+  const wk = document.getElementById('hoursWeek');
+  const wknd = document.getElementById('hoursWeekend');
+  if(wk) wk.textContent = `${h.weekOpen} às ${h.weekClose}`;
+  if(wknd) wknd.textContent = `${h.weekendOpen} às ${h.weekendClose}`;
+  const note = document.getElementById('statusNote');
+  if(note){
+    if(settings.statusNote){ note.textContent = settings.statusNote; note.style.display=''; }
+    else note.style.display='none';
+  }
 }
 
 // ---------- STOREFRONT ----------
