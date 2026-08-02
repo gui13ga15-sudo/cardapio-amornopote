@@ -524,6 +524,33 @@
         </div>
         <hr style="border:none;border-top:1px solid var(--blush);margin:20px 0;">
         <div class="field">
+          <label for="settStoreStatus">Status da loja</label>
+          <select id="settStoreStatus">
+            <option value="auto">Automático (seguir horários)</option>
+            <option value="open">Aberta agora</option>
+            <option value="closed">Fechada agora</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="settStatusNote">Aviso para os clientes (opcional)</label>
+          <input type="text" id="settStatusNote" placeholder="Ex: Hoje fechamos mais cedo">
+        </div>
+        <div class="field">
+          <label>Terça a sexta</label>
+          <div style="display:flex;gap:10px;">
+            <input type="time" id="settWeekOpen">
+            <input type="time" id="settWeekClose">
+          </div>
+        </div>
+        <div class="field">
+          <label>Sábado e domingo</label>
+          <div style="display:flex;gap:10px;">
+            <input type="time" id="settWeekendOpen">
+            <input type="time" id="settWeekendClose">
+          </div>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--blush);margin:20px 0;">
+        <div class="field">
           <label for="settNewPass">Nova senha do painel (deixe em branco para manter)</label>
           <input type="password" id="settNewPass" autocomplete="new-password">
         </div>
